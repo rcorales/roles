@@ -1,0 +1,21 @@
+name: Terraform
+
+on:
+  issue_comment:
+    types: [ created ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+permissions:
+  id-token: write
+  contents: read
+  pull-requests: write
+
+jobs:
+  terraform-plan:
+    if: |
+        github.event.issue.pull_request
+        && contains(github.event.comment.body, '/terraform plan')
+    runs-on: ubuntu-latest
+    name: Terraform Plan
