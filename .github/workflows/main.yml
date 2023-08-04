@@ -19,3 +19,7 @@ jobs:
         && contains(github.event.comment.body, '/terraform plan')
     runs-on: ubuntu-latest
     name: Terraform Plan
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying..."   
